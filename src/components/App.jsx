@@ -1,24 +1,25 @@
-import React from "react";
-import Searchbar from './Searchbar/Searchbar'
-import Button from "./Button/Button";
+import React from 'react';
+import Searchbar from './Searchbar/Searchbar';
+import Button from './Button/Button';
 
-import Loader from "./Loader/Loader";
- 
-
+import Loader from './Loader/Loader';
 
 export default class App extends React.Component {
-
-  queryImage = (e) => {
+  queryImage = e => {
     console.log(e.target);
-  }
+  };
 
-  render(){
+  onBtnClick = (e) => {
+    console.log(e.target);
+  };
+
+  render() {
     return (
       <>
-      <Searchbar onSubmit={this.queryImage}/>
-      <Button/>
-      <Loader/>
+        <Searchbar onSubmit={this.queryImage} />
+        <Button onBtnClick={this.onBtnClick} />
+        <Loader />
       </>
     );
   }
-};
+}
