@@ -5,12 +5,15 @@ import Button from './Button/Button';
 import Loader from './Loader/Loader';
 
 export default class App extends React.Component {
-  queryImage = e => {
-    console.log(e.target);
+
+
+
+  queryImage = () => {
+    console.log(123);
   };
 
-  onBtnClick = (e) => {
-    console.log(e.target);
+  onBtnClick = () => {
+    console.log(321);
   };
 
   render() {

@@ -16,7 +16,6 @@ export default class Searchbar extends React.Component {
         e.preventDefault();
         this.props.onSubmit(this.state.query.trim());
         this.reset()
-
         console.log();
     }
 
@@ -46,6 +45,10 @@ export default class Searchbar extends React.Component {
     );
   }
 }
+
+Searchbar.propTypes = { 
+    onSubmit: PropTypes.func.isRequired 
+};
 
 
 
