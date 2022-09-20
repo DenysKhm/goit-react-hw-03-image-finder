@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-let PAGE_COUNTER = 1;
-
-export default async function getImages(searchQuery) {
+export default async function getImages(searchQuery, page = 1) {
   try {
     const BASE_URL = `https://pixabay.com/api/`;
     const searchParams = new URLSearchParams({
@@ -11,13 +9,11 @@ export default async function getImages(searchQuery) {
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: 'true',
-      page: `${PAGE_COUNTER}`,
+      page: `${page}`,
       per_page: 12,
     });
 
     const response = await axios(`${BASE_URL}/?${searchParams}`);
-
-    PAGE_COUNTER += 1;
 
     return response;
   } catch (error) {
