@@ -35,7 +35,6 @@ export default class App extends React.Component {
         totalHits: totalHits,
         isLoading: false,
       }));
-      console.log(this.state.images);
     } catch (error) {
       this.setState({ error });
       Notify.failure('Error');
