@@ -20,14 +20,14 @@ export default class App extends React.Component {
 
   queryImage = async searchQuery => {
     if (this.state.searchQuery === searchQuery)
-      return Notify.warning('Please, enter another search parameters');
+      return Notify.warning('Search query is invalid');
     this.setState({ isLoading: true });
 
     try {
       const {
         data: { hits, totalHits }
       } = await getImages(searchQuery, 1);
-      if (!totalHits) Notify.failure('No results, try again');
+      if (!totalHits) Notify.failure('No results, please, try again');
       this.setState(_ => ({
         searchQuery,
         images: [...hits],
@@ -50,7 +50,7 @@ export default class App extends React.Component {
       const {
         data: { hits },
       } = await getImages(searchQuery, page + 1);
-      if (hits.length === 0) Notify.failure('No results, try again');
+      if (hits.length === 0) Notify.failure('No results, please, try again');
 
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
@@ -68,7 +68,7 @@ export default class App extends React.Component {
     return (
       <div className={s.App}>
         <Searchbar onSubmit={this.queryImage} />
-        {error && <h2>Ooops, something went wrong. Please, reload page</h2>}
+        {error && <h2>Error, please, try again</h2>}
         <ImageGallery data={images}/>
         {!isLoading && images.length !== 0 && (
         <Button onBtnClick={this.onBtnClick} />)}
