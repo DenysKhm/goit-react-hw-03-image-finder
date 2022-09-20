@@ -27,7 +27,7 @@ export default class ImageGalleryItem extends React.Component {
           <Modal
             largeImageURL={largeImageURL}
             tags={tags}
-            handleClose={this.toggleModal}
+            closeModal={this.toggleModal}
           />
         )}
       </li>

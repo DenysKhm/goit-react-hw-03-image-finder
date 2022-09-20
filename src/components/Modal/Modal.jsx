@@ -11,8 +11,8 @@ export default class Modal extends React.Component {
         window.removeEventListener('keydown', this.closeByEsc);
       }
     
-      closeByEsc = ({ code }) => {
-        if (code === 'Escape') {
+      closeByEsc = (e) => {
+        if (e.code === 'Escape') {
           this.props.closeModal();
         }
       };
