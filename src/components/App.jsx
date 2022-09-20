@@ -5,7 +5,6 @@ import s from './App.module.css';
 import ImageGallery from './ImageGallery/ImageGallery'
 import getImages from './Pixabay/pixabay';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import Loader from './Loader/Loader';
 
 export default class App extends React.Component {
@@ -26,7 +25,7 @@ export default class App extends React.Component {
 
     try {
       const {
-        data: { hits, totalHits },
+        data: { hits, totalHits }
       } = await getImages(searchQuery, 1);
       if (!totalHits) Notify.failure('No results, try again');
       this.setState(_ => ({
@@ -36,9 +35,10 @@ export default class App extends React.Component {
         totalHits: totalHits,
         isLoading: false,
       }));
+      console.log(this.state.images);
     } catch (error) {
-      this.setState({ error: error.message });
-      Notify.failure(`Error - ${error.message}`);
+      this.setState({ error });
+      Notify.failure('Error');
     }
   };
 
@@ -58,19 +58,19 @@ export default class App extends React.Component {
         isLoading: false,
       }));
     } catch (error) {
-      this.setState({ error: error.message });
-      Notify.failure(`Error - ${error.message}`);
+      this.setState({ error});
+      Notify.failure('Error');
     }
   };
 
   render() {
-    const { images, totalHits, isLoading, error } = this.state;
+    const { images, isLoading, error } = this.state;
     return (
       <div className={s.App}>
         <Searchbar onSubmit={this.queryImage} />
         {error && <h2>Ooops, something went wrong. Please, reload page</h2>}
         <ImageGallery data={images}/>
-        {!isLoading && images.length > 0 && images.length < totalHits && (
+        {!isLoading && images.length !== 0 && (
         <Button onBtnClick={this.onBtnClick} />)}
         { isLoading && <Loader />}
       </div>
